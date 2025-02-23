@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy & Rent Stuff</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .item {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            text-align: center;
+            width: 200px;
+        }
+        .item button {
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding-top: 200px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Buy & Rent Stuff!</h1>
+    
+    <div class="item">
+        <h2>Item 1</h2>
+        <button id="buy1">Buy</button>
+        <button id="rent1">Rent</button>
+    </div>
+    
+    <div class="item">
+        <h2>Item 2</h2>
+        <button id="buy2">Buy</button>
+        <button id="rent2">Rent</button>
+    </div>
+
+    <div class="popup" id="popupMessage">
+        <p>Please put the money on my desk!</p>
+    </div>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your user ID
+        emailjs.init("YOUR_USER_ID");
+
+        // Function to send email
+        function sendEmail(action, item) {
+            const templateParams = {
+                action: action,
+                item: item
+            };
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
+                .then(function(response) {
+                    console.log('Success:', response);
+                }, function(error) {
+                    console.log('Error:', error);
+                });
+        }
+
+        // Function to show popup message
+        function showPopup() {
+            document.getElementById("popupMessage").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("popupMessage").style.display = "none";
+            }, 3000); // Hide after 3 seconds
+        }
+
+        // Event listeners for Buy and Rent buttons
+        document.getElementById("buy1").addEventListener("click", function() {
+            sendEmail("Buy", "Item 1");
+            showPopup();
+        });
+        document.getElementById("rent1").addEventListener("click", function() {
+            sendEmail("Rent", "Item 1");
+            showPopup();
+        });
+
+        document.getElementById("buy2").addEventListener("click", function() {
+            sendEmail("Buy", "Item 2");
+            showPopup();
+        });
+        document.getElementById("rent2").addEventListener("click", function() {
+            sendEmail("Rent", "Item 2");
+            showPopup();
+        });
+    </script>
+</body>
+</html>
