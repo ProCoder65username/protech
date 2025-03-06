@@ -44,35 +44,30 @@
     <div class="item">
         <h2>Wired mouse rent:
      2$/15tickets for 3 months</h2>
-        <button id="buy1">Buy</button>
         <button id="rent1">Rent</button>
     </div>
     
     <div class="item">
         <h2>Rubix cube:
         1$/6 tickets for 3 months</h2>
-        <button id="buy2">Buy</button>
         <button id="rent2">Rent</button>
     </div>
     
     <div class="item">
         <h2>Wirless gaming mouse:
         14$/48 tickets for 3 months</h2>
-        <button id="buy2">Buy</button>
         <button id="rent2">Rent</button>
     </div>   
     
     <div class="item">
         <h2>Apple mouse:
         4$/23 tickets for 3 months</h2>
-        <button id="buy2">Buy</button>
         <button id="rent2">Rent</button>
     </div>
     
     <div class="item">
         <h2>Gaming headphones:
         11$/43 tickets for 3 months</h2>
-        <button id="buy2">Buy</button>
         <button id="rent2">Rent</button>
     </div>
 
@@ -81,51 +76,5 @@
         <p>Please put the money on my desk!</p>
     </div>
 
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        // Initialize EmailJS with your user ID
-        emailjs.init("user_proemail");
-
-        // Function to send email
-        function sendEmail(action, item) {
-            const templateParams = {
-                action: action,
-                item: item
-            };
-            emailjs.send("service_5fxlvp5", "template_hr3hwne", templateParams)
-                .then(function(response) {
-                    console.log('Success:', response);
-                }, function(error) {
-                    console.log('Error:', error);
-                });
-        }
-
-        // Function to show popup message
-        function showPopup() {
-            document.getElementById("popupMessage").style.display = "block";
-            setTimeout(() => {
-                document.getElementById("popupMessage").style.display = "none";
-            }, 3000); // Hide after 3 seconds
-        }
-
-        // Event listeners for Buy and Rent buttons
-        document.getElementById("buy1").addEventListener("click", function() {
-            sendEmail("Buy", "Item 1");
-            showPopup();
-        });
-        document.getElementById("rent1").addEventListener("click", function() {
-            sendEmail("Rent", "Item 1");
-            showPopup();
-        });
-
-        document.getElementById("buy2").addEventListener("click", function() {
-            sendEmail("Buy", "Item 2");
-            showPopup();
-        });
-        document.getElementById("rent2").addEventListener("click", function() {
-            sendEmail("Rent", "Item 2");
-            showPopup();
-        });
-    </script>
 </body>
 </html>
